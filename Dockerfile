@@ -11,11 +11,11 @@ WORKDIR /install-postgis
 ADD $POSTGRESQP_KEY_FILE /install-postgis/key.asc
 RUN apt-key add key.asc
 RUN apt-get -y update
-RUN apt-get -y install postgis
+RUN apt-get -y install postgresql-9.6-postgis-2.4
 
 ## cleaning
 RUN apt-get purge -y --auto-remove
 RUN apt-get -y autoclean
 
 WORKDIR /
-RUN rm -rf /install-postgis
+RUN rm -fr /install-postgis
