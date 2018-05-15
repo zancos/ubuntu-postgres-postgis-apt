@@ -1,21 +1,11 @@
-FROM postgres:9
+FROM postgres:9.6
 LABEL manteiner='zancos<zancos@hotmail.com>'
 
-
-#from https://wiki.postgresql.org/wiki/Apt
-ENV POSTGRESQP_KEY_FILE https://www.postgresql.org/media/keys/ACCC4CF8.asc
-
-
 ##Installation
-WORKDIR /install-postgis
-ADD $POSTGRESQP_KEY_FILE /install-postgis/key.asc
-RUN apt-key add key.asc
 RUN apt-get -y update
-RUN apt-get -y install postgresql-9.6-postgis-2.4
+RUN apt-get -y install postgresql-9.6-postgis-2.4 --no-install-recommends
 
 ## cleaning
 RUN apt-get purge -y --auto-remove
 RUN apt-get -y autoclean
-
-WORKDIR /
-RUN rm -fr /install-postgis
+RUN rm -fr /var/lib/apt/lists/*
