@@ -1,4 +1,4 @@
-FROM postgres:10
+FROM postgres:9
 LABEL manteiner='zancos<zancos@hotmail.com>'
 
 
